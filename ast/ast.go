@@ -6,17 +6,19 @@ import (
 	"strings"
 )
 
-// The base Node interface for the AST
+// The base Node interface
 type Node interface {
 	TokenLiteral() string
 	String() string
 }
 
+// All statement nodes implement this
 type Statement interface {
 	Node
 	statementNode()
 }
 
+// All expression nodes implement this
 type Expression interface {
 	Node
 	expressionNode()
@@ -46,7 +48,7 @@ func (p *Program) String() string {
 
 // Statements
 type LetStatement struct {
-	Token token.Token // token of type token.LET
+	Token token.Token // the token.LET token
 	Name  *Identifier
 	Value Expression
 }
